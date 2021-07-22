@@ -74,7 +74,8 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
                 position: "absolute",
                 padding: 5,
                 marginTop: 105,
-                background: "white",
+                // background: "white",
+                backgroundColor: "red",
               }}
             >
               {priorities.map((priority) => (
