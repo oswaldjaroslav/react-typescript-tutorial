@@ -69,7 +69,6 @@ const TodoItem: React.FC<TodoIProps> = ({
       ) : (
         <CheckCircleRoundedIcon onClick={() => handleCompleteTodo(todo)} />
       )}
-
       <div className="todo-item-title-container">
         {!toggleTodo ? (
           <div

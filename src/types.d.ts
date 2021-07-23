@@ -6,6 +6,7 @@ interface Todo {
 }
 
 type CompleteTodo = (selectedTodo: Todo) => void;
-type AddTodo = (title: string) => void;
+type AddTodo = (title: string, priority: string) => void;
 type RemoveTodo = (id: number) => void;
 type EditTodo = (todo: Todo) => void;
+type SelectPriorityOption = (priority: Priority) => void;

@@ -23,6 +23,13 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [title, setTitle] = React.useState<string>("");
   const [visible, setVisible] = React.useState<boolean>(false);
+  const [selectedPriorityOption, setSelectedPriorityOption] =
+    React.useState<string>(priorities[3]);
+
+  const handleSelectPriorityOption = (priority: string) => {
+    setSelectedPriorityOption(priority);
+    handleVisible();
+  };
 
   const handleVisible = () => {
     setVisible((current: boolean) => !current);
@@ -33,8 +40,9 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
   };
 
   const handleSubmitTodo = (e: any) => {
+    const priority = selectedPriorityOption;
     e.preventDefault();
-    addTodo(title);
+    addTodo(title, priority);
     handleOpenClose();
   };
 
@@ -64,7 +72,9 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
               marginTop: 10,
             }}
             onClick={handleVisible}
-          />
+          >
+            {selectedPriorityOption || priorities[3]}
+          </div>
           {visible && (
             <div
               style={{
@@ -74,12 +84,13 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
                 position: "absolute",
                 padding: 5,
                 marginTop: 105,
-                // background: "white",
-                backgroundColor: "red",
+                background: "white",
               }}
             >
-              {priorities.map((priority) => (
-                <div key={priority.id}>{priority.title}</div>
+              {priorities.map((priority: string) => (
+                <div onClick={() => handleSelectPriorityOption(priority)}>
+                  {priority}
+                </div>
               ))}
             </div>
           )}

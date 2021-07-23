@@ -31,21 +31,4 @@ export const todos = [
   },
 ];
 
-export const priorities = [
-  {
-    title: "priority1",
-    id: 1,
-  },
-  {
-    title: "priority2",
-    id: 2,
-  },
-  {
-    title: "priority3",
-    id: 3,
-  },
-  {
-    title: "priority4",
-    id: 4,
-  },
-];
+export const priorities = ["priority1", "priority2", "priority3", "priority4"];

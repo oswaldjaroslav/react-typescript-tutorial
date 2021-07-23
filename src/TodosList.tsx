@@ -9,6 +9,8 @@ interface IProps {
   addTodo: AddTodo;
   removeTodo: RemoveTodo;
   editTodo: EditTodo;
+  FILTER_MAP: any;
+  filter: any;
 }
 
 const TodosList: React.FC<IProps> = ({
@@ -17,6 +19,8 @@ const TodosList: React.FC<IProps> = ({
   addTodo,
   removeTodo,
   editTodo,
+  FILTER_MAP,
+  filter,
 }) => {
   return (
     <div>
@@ -24,7 +28,7 @@ const TodosList: React.FC<IProps> = ({
       <div className="grid">
         {todos && todos.length ? (
           <div>
-            {todos.map((todo: Todo) => (
+            {todos.filter(FILTER_MAP[filter]).map((todo: Todo) => (
               <TodoItem
                 todo={todo}
                 completeTodo={completeTodo}
@@ -43,7 +47,6 @@ const TodosList: React.FC<IProps> = ({
             }}
           >
             <div>"You have no tasks, yet!"</div>
-            <div></div>
           </div>
         )}
       </div>
