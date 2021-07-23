@@ -2,6 +2,7 @@
   "name": "typescript",
   "version": "0.1.0",
   "private": true,
+  "homepage": "https://romanca.github.io/REACT-typescript-sample/",
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.15.2",
     "@material-ui/core": "^4.12.2",
