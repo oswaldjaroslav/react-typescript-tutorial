@@ -1,32 +1,26 @@
-.overlay {
-  background-color: rgba(10, 10, 10, 0.75);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
+import styled from "styled-components";
+import Modal from "react-modal";
 
-/* .todo-item-title-container {
+export const TodoItemTitleContainer = styled.div`
   width: 70%;
-}
+`;
 
-.todo-item-buttons-container {
+export const TodoItemButtonsContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-}
+`;
 
-.edit-input {
+export const EditInput = styled.input`
   margin-left: -5px;
   background: transparent;
   outline: none;
   border-width: 0px 0px 2px;
   font-size: 14px;
   margin-top: 2px;
-}
+`;
 
-.grid {
+export const Grid = styled.div`
   display: inline-block;
   height: 610px;
   justify-content: center;
@@ -38,9 +32,9 @@
   border: 1px solid transparent;
   box-shadow: 0px 0px 10px 0px black;
   width: 1304px;
-}
+`;
 
-.cell {
+export const Cell = styled.div`
   float: left;
   margin: 8px;
   width: 300px;
@@ -57,13 +51,13 @@
   padding-left: 5px;
   padding-right: 5px;
   cursor: pointer;
-}
+`;
 
-.cell:nth-child(4n) + .cell {
-  clear: both;
-}
+//   .cell:nth-child(4n) + .cell {
+//     clear: both;
+//   }
 
-.submit-item-button {
+export const SubmitItemButton = styled.button`
   width: 35px;
   height: 35px;
   box-shadow: 0px 0px 10px 0px grey;
@@ -77,41 +71,33 @@
   margin-top: 20px;
   margin-bottom: 20px;
   cursor: pointer;
-}
-.edit-button {
-  margin: 2px;
-  border: none;
-  outline: none;
-  width: 15px;
-  height: 15px;
-  color: teal;
-  cursor: pointer;
-}
-.delete-button {
-  margin: 2px;
-  border: none;
-  outline: none;
-  width: 15px;
-  height: 15px;
-  color: tomato;
-  cursor: pointer;
-}
+`;
+// export const EditButton = styled.button`
+//   margin: 2px;
+//   border: none;
+//   outline: none;
+//   width: 15px;
+//   height: 15px;
+//   color: teal;
+//   cursor: pointer;
+// `;
+//   .delete-button {
+//     margin: 2px;
+//     border: none;
+//     outline: none;
+//     width: 15px;
+//     height: 15px;
+//     color: tomato;
+//     cursor: pointer;
+//   }
 
-.submit-form {
+export const SubmitForm = styled.form`
   width: 400px;
   display: flex;
   flex-direction: column;
-}
-.overlay {
-  background-color: rgba(10, 10, 10, 0.75);
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-}
+`;
 
-.submit-item-input {
+export const SubmitItemInput = styled.textarea`
   height: 50px;
   border: 1px solid grey;
   outline: none;
@@ -120,9 +106,9 @@
   padding: 5px;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica,
     Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-}
+`;
 
-.add-button {
+export const AddButton = styled.button`
   border: none;
   outline: none;
   background: tomato;
@@ -132,42 +118,46 @@
   color: white;
   font-size: 15px;
   cursor: pointer;
-}
+`;
 
-.cancel-button {
+export const CancelButton = styled.button`
   border: none;
   outline: none;
   background: transparent;
   color: grey;
   font-size: 15px;
   cursor: pointer;
-}
+`;
 
-.submit-form-buttons-container {
+export const SubmitFormButtonsContainer = styled.div`
   display: flex;
   margin-top: 10px;
-} */
-/* .checkbox-container {
-  width: 20px;
-  height: 20px;
-  border: 1px solid grey;
-  border-radius: 50%;
+`;
+
+export const AppContainer = styled.div`
+  width: 100%;
+  height: 100vh;
   display: flex;
-  justify-content: center;
   align-items: center;
-} */
+  flex-direction: column;
+`;
 
-/* @media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
+export const FilterListContainer = styled.div`
+  margin-top: 10px;
+  width: 200px;
+  display: flex;
+  justify-content: space-between;
+`;
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+export const FiltersButton = styled.button`
+  margin: 7px;
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+`;
+
+export const Container = styled.div``;

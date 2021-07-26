@@ -4,6 +4,13 @@ import EditIcon from "@material-ui/icons/Edit";
 import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutlineRounded";
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
+import {
+  Cell,
+  Container,
+  EditInput,
+  TodoItemButtonsContainer,
+  TodoItemTitleContainer,
+} from "../styled-components";
 
 interface TodoIProps {
   todo: Todo;
@@ -49,8 +56,8 @@ const TodoItem: React.FC<TodoIProps> = ({
   };
 
   return (
-    <div key={todo.id} className="cell">
-      {!toggleCheckBox ? (
+    <Cell>
+      {!todo.complete ? (
         <CheckCircleOutlineRoundedIcon
           style={{
             color:
@@ -69,30 +76,29 @@ const TodoItem: React.FC<TodoIProps> = ({
       ) : (
         <CheckCircleRoundedIcon onClick={() => handleCompleteTodo(todo)} />
       )}
-      <div className="todo-item-title-container">
+      <TodoItemTitleContainer>
         {!toggleTodo ? (
-          <div
+          <Container
             style={{
               textDecoration: todo.complete ? " 3px  line-through" : undefined,
             }}
           >
             {todo.title}
-          </div>
+          </Container>
         ) : (
-          <div>
-            <input
+          <Container>
+            <EditInput
               type="text"
               value={editTitle}
               onChange={handleChangeEditTitle}
-              className="edit-input"
               style={{
                 textDecoration: todo.complete ? "3px line-through" : undefined,
               }}
             />
-          </div>
+          </Container>
         )}
-      </div>
-      <div className="todo-item-buttons-container">
+      </TodoItemTitleContainer>
+      <TodoItemButtonsContainer>
         {toggleTodo ? (
           <CheckCircleRoundedIcon
             className="edit-button"
@@ -112,8 +118,8 @@ const TodoItem: React.FC<TodoIProps> = ({
             onClick={() => removeTodo(todo.id)}
           />
         )}
-      </div>
-    </div>
+      </TodoItemButtonsContainer>
+    </Cell>
   );
 };
 

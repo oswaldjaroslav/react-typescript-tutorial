@@ -1,7 +1,15 @@
 import React from "react";
 import Modal from "react-modal";
-import "./App.css";
-import { priorities } from "./mockData";
+import "../App.css";
+import { priorities } from "../shared/mockData";
+import {
+  AddButton,
+  CancelButton,
+  SubmitForm,
+  SubmitFormButtonsContainer,
+  SubmitItemButton,
+  SubmitItemInput,
+} from "../styled-components";
 
 const customStyles = {
   content: {
@@ -52,16 +60,10 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
 
   return (
     <div>
-      <button onClick={handleOpenClose} className="submit-item-button">
-        +
-      </button>
+      <SubmitItemButton onClick={handleOpenClose}>+</SubmitItemButton>
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
-        <form className="submit-form">
-          <textarea
-            className="submit-item-input"
-            value={title}
-            onChange={handleChange}
-          />
+        <SubmitForm>
+          <SubmitItemInput value={title} onChange={handleChange} />
           <div
             style={{
               border: "1px solid grey",
@@ -94,15 +96,11 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
               ))}
             </div>
           )}
-          <div className="submit-form-buttons-container">
-            <button className="add-button" onClick={handleSubmitTodo}>
-              Add task
-            </button>
-            <button className="cancel-button" onClick={handleOpenClose}>
-              Cancel
-            </button>
-          </div>
-        </form>
+          <SubmitFormButtonsContainer>
+            <AddButton onClick={handleSubmitTodo}>Add task</AddButton>
+            <CancelButton onClick={handleOpenClose}>Cancel</CancelButton>
+          </SubmitFormButtonsContainer>
+        </SubmitForm>
       </Modal>
     </div>
   );

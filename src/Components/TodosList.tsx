@@ -1,5 +1,6 @@
 import React from "react";
-import "./App.css";
+import "../App.css";
+import { Container, Grid } from "../styled-components";
 import SubmitItemForm from "./SubmitItemForm";
 import TodoItem from "./TodoItem";
 
@@ -23,11 +24,11 @@ const TodosList: React.FC<IProps> = ({
   filter,
 }) => {
   return (
-    <div>
+    <Container>
       <SubmitItemForm addTodo={addTodo} />
-      <div className="grid">
+      <Grid>
         {todos && todos.length ? (
-          <div>
+          <Container>
             {todos.filter(FILTER_MAP[filter]).map((todo: Todo) => (
               <TodoItem
                 todo={todo}
@@ -36,7 +37,7 @@ const TodosList: React.FC<IProps> = ({
                 editTodo={editTodo}
               />
             ))}
-          </div>
+          </Container>
         ) : (
           <div
             style={{
@@ -49,8 +50,8 @@ const TodosList: React.FC<IProps> = ({
             <div>"You have no tasks, yet!"</div>
           </div>
         )}
-      </div>
-    </div>
+      </Grid>
+    </Container>
   );
 };
 

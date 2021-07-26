@@ -1,14 +1,15 @@
 import React from "react";
-import TodosList from "./TodosList";
-import { todos } from "./mockData";
+import TodosList from "./Components/TodosList";
+import { todos } from "./shared/mockData";
 import usePersistedState from "./use-persisted.state";
-import FilterButton from "./FilterButton";
+import FilterButton from "./Components/FilterButton";
+import { AppContainer, FilterListContainer } from "./styled-components";
 
 const initialTodos: Todo[] = todos;
 
 const App = () => {
   const [todos, setTodos] = usePersistedState("todos", initialTodos);
-  const [filter, setFilter] = React.useState<string>("All");
+  const [filter, setFilter] = React.useState<string>("Active");
 
   const FILTER_MAP = {
     All: () => true,
@@ -18,18 +19,16 @@ const App = () => {
 
   const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-  const filterList = FILTER_NAMES.map((name) => {
+  const filterList = FILTER_NAMES.map((item: string) => {
     return (
       <FilterButton
-        key={name}
-        name={name}
-        isPressed={name === filter}
+        key={item}
+        item={item}
+        isPressed={item === filter}
         setFilter={setFilter}
       />
     );
   });
-
-  console.log(todos);
 
   const completeTodo = (selectedTodo: Todo) => {
     const newTodos = todos.map((todo: Todo) => {
@@ -61,26 +60,17 @@ const App = () => {
 
   const editTodo = (todo: Todo) => {
     setTodos((current: any) =>
-      current.map((i: Todo) => {
-        if (i.id === todo.id) {
+      current.map((item: Todo) => {
+        if (item.id === todo.id) {
           return todo;
         }
-        return i;
+        return item;
       })
     );
   };
 
   return (
-    <div
-      style={{
-        width: "100%",
-        height: "100vh",
-        display: "flex",
-        alignItems: "center",
-        flexDirection: "column",
-        background: "#e0f2f1",
-      }}
-    >
+    <AppContainer>
       <TodosList
         todos={todos}
         completeTodo={completeTodo}
@@ -90,17 +80,8 @@ const App = () => {
         FILTER_MAP={FILTER_MAP}
         filter={filter}
       />
-      <div
-        style={{
-          marginTop: 10,
-          width: 200,
-          display: "flex",
-          justifyContent: "space-between",
-        }}
-      >
-        {filterList}
-      </div>
-    </div>
+      <FilterListContainer>{filterList}</FilterListContainer>
+    </AppContainer>
   );
 };
 
