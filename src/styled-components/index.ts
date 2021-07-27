@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Modal from "react-modal";
 
 export const TodoItemTitleContainer = styled.div`
   width: 70%;
@@ -161,3 +160,34 @@ export const FiltersButton = styled.button`
 `;
 
 export const Container = styled.div``;
+
+export const PriorityPickerButton = styled.div`
+  border: 1px solid grey;
+  width: fit-content;
+  height: 20px;
+  padding: 10px;
+  border-radius: 5px;
+  margin-top: 10px;
+  cursor: pointer;
+  :hover {
+    background: lightgrey;
+  }
+`;
+
+export const PriorityPickerCollapsiblePanel = styled.div`
+  border: 1px solid grey;
+  border-radius: 5px;
+  position: fixed;
+  margin-top: 2px;
+  background: white;
+  cursor: pointer;
+  width: fit - content;
+`;
+
+export const PriorityPickerCollapsiblePanelItem = styled.div`
+  padding: 10px;
+  border-radius: 3px;
+  :hover {
+    background: lightgrey;
+  }
+`;

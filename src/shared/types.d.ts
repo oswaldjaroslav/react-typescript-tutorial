@@ -11,3 +11,4 @@ type RemoveTodo = (id: number) => void;
 type EditTodo = (todo: Todo) => void;
 type SelectPriorityOption = (priority: Priority) => void;
 type SetFilter = (item: string) => void;
+type SelectPriorityOption = (priority: string) => void;

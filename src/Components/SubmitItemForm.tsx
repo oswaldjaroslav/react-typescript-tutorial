@@ -5,11 +5,13 @@ import { priorities } from "../shared/mockData";
 import {
   AddButton,
   CancelButton,
+  Container,
   SubmitForm,
   SubmitFormButtonsContainer,
   SubmitItemButton,
   SubmitItemInput,
 } from "../styled-components";
+import PriorityPicker from "./PriorityPicker";
 
 const customStyles = {
   content: {
@@ -20,6 +22,7 @@ const customStyles = {
     marginRight: "-50%",
     transform: "translate(-50%, -50%)",
     borderRadius: 10,
+    overflow: "visible",
   },
 };
 
@@ -30,17 +33,11 @@ interface IProps {
 const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [title, setTitle] = React.useState<string>("");
-  const [visible, setVisible] = React.useState<boolean>(false);
   const [selectedPriorityOption, setSelectedPriorityOption] =
     React.useState<string>(priorities[3]);
 
-  const handleSelectPriorityOption = (priority: string) => {
+  const selectPriorityOption = (priority: string) => {
     setSelectedPriorityOption(priority);
-    handleVisible();
-  };
-
-  const handleVisible = () => {
-    setVisible((current: boolean) => !current);
   };
 
   const handleOpenClose = () => {
@@ -52,6 +49,8 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
     e.preventDefault();
     addTodo(title, priority);
     handleOpenClose();
+    setTitle("");
+    setSelectedPriorityOption(priorities[3]);
   };
 
   const handleChange = (e: any) => {
@@ -59,50 +58,22 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
   };
 
   return (
-    <div>
+    <Container>
       <SubmitItemButton onClick={handleOpenClose}>+</SubmitItemButton>
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
         <SubmitForm>
           <SubmitItemInput value={title} onChange={handleChange} />
-          <div
-            style={{
-              border: "1px solid grey",
-              width: 80,
-              height: 20,
-              padding: 5,
-              borderRadius: 5,
-              marginTop: 10,
-            }}
-            onClick={handleVisible}
-          >
-            {selectedPriorityOption || priorities[3]}
-          </div>
-          {visible && (
-            <div
-              style={{
-                width: 80,
-                border: "1px solid grey",
-                borderRadius: 10,
-                position: "absolute",
-                padding: 5,
-                marginTop: 105,
-                background: "white",
-              }}
-            >
-              {priorities.map((priority: string) => (
-                <div onClick={() => handleSelectPriorityOption(priority)}>
-                  {priority}
-                </div>
-              ))}
-            </div>
-          )}
+          <PriorityPicker
+            selectPriorityOption={selectPriorityOption}
+            selectedPriorityOption={selectedPriorityOption}
+          />
           <SubmitFormButtonsContainer>
             <AddButton onClick={handleSubmitTodo}>Add task</AddButton>
             <CancelButton onClick={handleOpenClose}>Cancel</CancelButton>
           </SubmitFormButtonsContainer>
         </SubmitForm>
       </Modal>
-    </div>
+    </Container>
   );
 };
 
