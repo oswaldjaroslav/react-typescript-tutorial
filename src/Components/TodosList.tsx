@@ -2,6 +2,7 @@ import React from "react";
 import "../App.css";
 import { Container, Grid } from "../styled-components";
 import SubmitItemForm from "./SubmitItemForm";
+import ThemePicker from "./ThemePicker";
 import TodoItem from "./TodoItem";
 
 interface IProps {
@@ -23,21 +24,29 @@ const TodosList: React.FC<IProps> = ({
   FILTER_MAP,
   filter,
 }) => {
+  const renderTodosList = React.useCallback(() => {
+    return todos
+      .filter(FILTER_MAP[filter])
+      .map((todo: Todo) => (
+        <TodoItem
+          todo={todo}
+          completeTodo={completeTodo}
+          removeTodo={removeTodo}
+          editTodo={editTodo}
+        />
+      ));
+  }, [FILTER_MAP, filter, todos, completeTodo, removeTodo, editTodo]);
+
+  React.useEffect(() => {
+    renderTodosList();
+  }, [renderTodosList]);
+
   return (
     <Container>
       <SubmitItemForm addTodo={addTodo} />
       <Grid>
         {todos && todos.length ? (
-          <Container>
-            {todos.filter(FILTER_MAP[filter]).map((todo: Todo) => (
-              <TodoItem
-                todo={todo}
-                completeTodo={completeTodo}
-                removeTodo={removeTodo}
-                editTodo={editTodo}
-              />
-            ))}
-          </Container>
+          <Container>{renderTodosList()}</Container>
         ) : (
           <div
             style={{

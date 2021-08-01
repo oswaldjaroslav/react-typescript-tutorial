@@ -31,6 +31,7 @@ export const Grid = styled.div`
   border: 1px solid transparent;
   box-shadow: 0px 0px 10px 0px black;
   width: 1304px;
+  background: ${(props: any) => props.theme.boxTheme};
 `;
 
 export const Cell = styled.div`
@@ -50,6 +51,7 @@ export const Cell = styled.div`
   padding-left: 5px;
   padding-right: 5px;
   cursor: pointer;
+  background: ${(props: any) => props.theme.itemTheme};
 `;
 
 //   .cell:nth-child(4n) + .cell {
@@ -59,8 +61,8 @@ export const Cell = styled.div`
 export const SubmitItemButton = styled.button`
   width: 35px;
   height: 35px;
-  box-shadow: 0px 0px 10px 0px grey;
-  background: #009688;
+  box-shadow: 0px 0px 10px 0px ${(props: any) => props.theme.buttonTheme};
+  background: ${(props: any) => props.theme.buttonTheme};
   border-radius: 50%;
   border: none;
   outline: none;
@@ -71,24 +73,6 @@ export const SubmitItemButton = styled.button`
   margin-bottom: 20px;
   cursor: pointer;
 `;
-// export const EditButton = styled.button`
-//   margin: 2px;
-//   border: none;
-//   outline: none;
-//   width: 15px;
-//   height: 15px;
-//   color: teal;
-//   cursor: pointer;
-// `;
-//   .delete-button {
-//     margin: 2px;
-//     border: none;
-//     outline: none;
-//     width: 15px;
-//     height: 15px;
-//     color: tomato;
-//     cursor: pointer;
-//   }
 
 export const SubmitForm = styled.form`
   width: 400px;
@@ -139,6 +123,7 @@ export const AppContainer = styled.div`
   display: flex;
   align-items: center;
   flex-direction: column;
+  background: ${(props: any) => props.theme.appTheme};
 `;
 
 export const FilterListContainer = styled.div`
@@ -149,7 +134,7 @@ export const FilterListContainer = styled.div`
 `;
 
 export const FiltersButton = styled.button`
-  margin: 7px;
+  margin-left: 7px;
   padding: 10px;
   border-radius: 5px;
   border: none;
@@ -190,4 +175,10 @@ export const PriorityPickerCollapsiblePanelItem = styled.div`
   :hover {
     background: lightgrey;
   }
+`;
+
+export const AppButtonsContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
 `;

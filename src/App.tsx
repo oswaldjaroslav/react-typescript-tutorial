@@ -1,17 +1,24 @@
 import React from "react";
 import TodosList from "./Components/TodosList";
-import { todos } from "./shared/mockData";
+import { themes, todos } from "./shared/mockData";
 import usePersistedState from "./use-persisted.state";
 import FilterButton from "./Components/FilterButton";
-import { AppContainer, FilterListContainer } from "./styled-components";
+import {
+  AppButtonsContainer,
+  AppContainer,
+  FilterListContainer,
+} from "./styled-components";
+import { ThemeProvider } from "styled-components";
+import ThemePicker from "./Components/ThemePicker";
 
 const initialTodos: Todo[] = todos;
 
 const App = () => {
   const [todos, setTodos] = usePersistedState("todos", initialTodos);
   const [filter, setFilter] = React.useState<string>("Active");
+  const [theme, setTheme] = usePersistedState("themes", themes["redTheme"]);
 
-  const FILTER_MAP = {
+  const FILTER_MAP: FilterMap = {
     All: () => true,
     Active: (todo: Todo) => !todo.complete,
     Completed: (todo: Todo) => todo.complete,
@@ -19,16 +26,22 @@ const App = () => {
 
   const FILTER_NAMES = Object.keys(FILTER_MAP);
 
-  const filterList = FILTER_NAMES.map((item: string) => {
-    return (
-      <FilterButton
-        key={item}
-        item={item}
-        isPressed={item === filter}
-        setFilter={setFilter}
-      />
-    );
-  });
+  const renderFilterList = React.useCallback(() => {
+    return FILTER_NAMES.map((item: string) => {
+      return (
+        <FilterButton
+          key={item}
+          item={item}
+          isPressed={item === filter}
+          setFilter={setFilter}
+        />
+      );
+    });
+  }, [FILTER_NAMES, filter]);
+
+  React.useEffect(() => {
+    renderFilterList();
+  }, [renderFilterList]);
 
   const completeTodo = (selectedTodo: Todo) => {
     const newTodos = todos.map((todo: Todo) => {
@@ -70,18 +83,23 @@ const App = () => {
   };
 
   return (
-    <AppContainer>
-      <TodosList
-        todos={todos}
-        completeTodo={completeTodo}
-        addTodo={addTodo}
-        removeTodo={removeTodo}
-        editTodo={editTodo}
-        FILTER_MAP={FILTER_MAP}
-        filter={filter}
-      />
-      <FilterListContainer>{filterList}</FilterListContainer>
-    </AppContainer>
+    <ThemeProvider theme={theme}>
+      <AppContainer>
+        <TodosList
+          todos={todos}
+          completeTodo={completeTodo}
+          addTodo={addTodo}
+          removeTodo={removeTodo}
+          editTodo={editTodo}
+          FILTER_MAP={FILTER_MAP}
+          filter={filter}
+        />
+        <AppButtonsContainer>
+          <FilterListContainer>{renderFilterList()}</FilterListContainer>
+          <ThemePicker theme={theme} setTheme={setTheme} />
+        </AppButtonsContainer>
+      </AppContainer>
+    </ThemeProvider>
   );
 };
 

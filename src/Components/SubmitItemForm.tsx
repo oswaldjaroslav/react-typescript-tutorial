@@ -11,6 +11,7 @@ import {
   SubmitItemButton,
   SubmitItemInput,
 } from "../styled-components";
+import EditInput from "./EditInput";
 import PriorityPicker from "./PriorityPicker";
 
 const customStyles = {
@@ -62,7 +63,7 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
       <SubmitItemButton onClick={handleOpenClose}>+</SubmitItemButton>
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
         <SubmitForm>
-          <SubmitItemInput value={title} onChange={handleChange} />
+          <EditInput value={title} onChange={handleChange} />
           <PriorityPicker
             selectPriorityOption={selectPriorityOption}
             selectedPriorityOption={selectedPriorityOption}

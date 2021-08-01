@@ -10,7 +10,7 @@ interface IProps {
 const FilterButton: React.FC<IProps> = ({ item, isPressed, setFilter }) => {
   return (
     <FiltersButton
-      style={{ background: isPressed ? "#ededed" : "transparent" }}
+      style={{ background: isPressed ? "white" : "transparent" }}
       type="button"
       aria-pressed={isPressed}
       onClick={() => setFilter(item)}

@@ -7,10 +7,10 @@ import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import {
   Cell,
   Container,
-  EditInput,
   TodoItemButtonsContainer,
   TodoItemTitleContainer,
 } from "../styled-components";
+import EditInput from "./EditInput";
 
 interface TodoIProps {
   todo: Todo;
@@ -80,7 +80,7 @@ const TodoItem: React.FC<TodoIProps> = ({
         {!toggleTodo ? (
           <Container
             style={{
-              textDecoration: todo.complete ? " 3px  line-through" : undefined,
+              textDecoration: todo.complete && "3px line-through",
             }}
           >
             {todo.title}
@@ -92,7 +92,7 @@ const TodoItem: React.FC<TodoIProps> = ({
               value={editTitle}
               onChange={handleChangeEditTitle}
               style={{
-                textDecoration: todo.complete ? "3px line-through" : undefined,
+                textDecoration: todo.complete && "3px line-through",
               }}
             />
           </Container>
@@ -101,20 +101,17 @@ const TodoItem: React.FC<TodoIProps> = ({
       <TodoItemButtonsContainer>
         {toggleTodo ? (
           <CheckCircleRoundedIcon
-            className="edit-button"
+            style={{ color: "green" }}
             onClick={() => handleEditTodo(todo)}
           />
         ) : (
-          <EditIcon className="edit-button" onClick={handleToggleTodo} />
+          <EditIcon color="primary" onClick={handleToggleTodo} />
         )}
         {toggleTodo ? (
-          <CancelRoundedIcon
-            className="delete-button"
-            onClick={handleToggleTodo}
-          />
+          <CancelRoundedIcon color="secondary" onClick={handleToggleTodo} />
         ) : (
           <DeleteOutlineIcon
-            className="delete-button"
+            color="secondary"
             onClick={() => removeTodo(todo.id)}
           />
         )}
