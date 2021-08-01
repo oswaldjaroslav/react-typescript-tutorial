@@ -16,7 +16,8 @@ const initialTodos: Todo[] = todos;
 const App = () => {
   const [todos, setTodos] = usePersistedState("todos", initialTodos);
   const [filter, setFilter] = React.useState<string>("Active");
-  const [theme, setTheme] = usePersistedState("themes", themes["redTheme"]);
+  const [theme, setTheme] = usePersistedState("themes", themes["blueTheme"]);
+
 
   const FILTER_MAP: FilterMap = {
     All: () => true,

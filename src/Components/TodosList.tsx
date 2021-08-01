@@ -1,8 +1,7 @@
 import React from "react";
 import "../App.css";
-import { Container, Grid } from "../styled-components";
+import { Container, Grid, MessageTitle } from "../styled-components";
 import SubmitItemForm from "./SubmitItemForm";
-import ThemePicker from "./ThemePicker";
 import TodoItem from "./TodoItem";
 
 interface IProps {
@@ -45,19 +44,12 @@ const TodosList: React.FC<IProps> = ({
     <Container>
       <SubmitItemForm addTodo={addTodo} />
       <Grid>
-        {todos && todos.length ? (
+        {todos && todos.filter(FILTER_MAP[filter]).length ? (
           <Container>{renderTodosList()}</Container>
         ) : (
-          <div
-            style={{
-              fontSize: 20,
-              textAlign: "center",
-              marginTop: 60,
-              fontWeight: 600,
-            }}
-          >
-            <div>"You have no tasks, yet!"</div>
-          </div>
+          <MessageTitle>
+            <div>"You have no tasks!"</div>
+          </MessageTitle>
         )}
       </Grid>
     </Container>

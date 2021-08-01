@@ -182,3 +182,10 @@ export const AppButtonsContainer = styled.div`
   align-items: center;
   justify-content: center;
 `;
+
+export const MessageTitle = styled.span`
+  font-size: 20px;
+  text-align: center;
+  padding: 15px;
+  font-weight: 600;
+`;
