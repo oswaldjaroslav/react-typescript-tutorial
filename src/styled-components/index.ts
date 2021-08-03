@@ -67,9 +67,6 @@ export const TodoItemContainer = styled.div`
   border-radius: 5px;
   background-color: red;
   cursor: pointer;
-  @media (max-width: 768px) {
-    display: flex;
-  }
 `;
 
 export const CheckBoxContainer = styled.div`
