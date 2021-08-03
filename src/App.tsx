@@ -4,12 +4,14 @@ import { themes, todos } from "./shared/mockData";
 import usePersistedState from "./use-persisted.state";
 import FilterButton from "./Components/FilterButton";
 import {
-  AppButtonsContainer,
   AppContainer,
   FilterListContainer,
+  Footer,
+  Header,
 } from "./styled-components";
 import { ThemeProvider } from "styled-components";
 import ThemePicker from "./Components/ThemePicker";
+import SubmitItemForm from "./Components/SubmitItemForm";
 
 const initialTodos: Todo[] = todos;
 
@@ -18,8 +20,7 @@ const App = () => {
   const [filter, setFilter] = React.useState<string>("Active");
   const [theme, setTheme] = usePersistedState("themes", themes["blueTheme"]);
 
-
-  const FILTER_MAP: FilterMap = {
+  const FILTER_MAP = {
     All: () => true,
     Active: (todo: Todo) => !todo.complete,
     Completed: (todo: Todo) => todo.complete,
@@ -86,6 +87,9 @@ const App = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppContainer>
+        <Header>
+          <SubmitItemForm addTodo={addTodo} />
+        </Header>
         <TodosList
           todos={todos}
           completeTodo={completeTodo}
@@ -95,10 +99,10 @@ const App = () => {
           FILTER_MAP={FILTER_MAP}
           filter={filter}
         />
-        <AppButtonsContainer>
+        <Footer>
           <FilterListContainer>{renderFilterList()}</FilterListContainer>
           <ThemePicker theme={theme} setTheme={setTheme} />
-        </AppButtonsContainer>
+        </Footer>
       </AppContainer>
     </ThemeProvider>
   );

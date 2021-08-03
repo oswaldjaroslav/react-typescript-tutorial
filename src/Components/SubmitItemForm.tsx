@@ -9,7 +9,6 @@ import {
   SubmitForm,
   SubmitFormButtonsContainer,
   SubmitItemButton,
-  SubmitItemInput,
 } from "../styled-components";
 import EditInput from "./EditInput";
 import PriorityPicker from "./PriorityPicker";

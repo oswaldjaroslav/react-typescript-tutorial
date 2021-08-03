@@ -5,10 +5,12 @@ import CheckCircleOutlineRoundedIcon from "@material-ui/icons/CheckCircleOutline
 import CheckCircleRoundedIcon from "@material-ui/icons/CheckCircleRounded";
 import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import {
-  Cell,
+  CheckBoxContainer,
   Container,
-  TodoItemButtonsContainer,
-  TodoItemTitleContainer,
+  TodoButtonsContainer,
+  TodoItemContainer,
+  TodoTitleContainer,
+  TodoToggleButtonContainer,
 } from "../styled-components";
 import EditInput from "./EditInput";
 
@@ -56,67 +58,79 @@ const TodoItem: React.FC<TodoIProps> = ({
   };
 
   return (
-    <Cell>
-      {!todo.complete ? (
-        <CheckCircleOutlineRoundedIcon
-          style={{
-            color:
-              todo.priority === "priority4"
-                ? "black"
-                : todo.priority === "priority3"
-                ? "red"
-                : todo.priority === "priority2"
-                ? "orange"
-                : todo.priority === "priority1"
-                ? "green"
-                : undefined,
-          }}
-          onClick={() => handleCompleteTodo(todo)}
-        />
-      ) : (
-        <CheckCircleRoundedIcon onClick={() => handleCompleteTodo(todo)} />
-      )}
-      <TodoItemTitleContainer>
-        {!toggleTodo ? (
-          <Container
-            style={{
-              textDecoration: todo.complete && "3px line-through",
-            }}
-          >
-            {todo.title}
-          </Container>
-        ) : (
-          <Container>
-            <EditInput
-              type="text"
-              value={editTitle}
-              onChange={handleChangeEditTitle}
+    <Container>
+      <TodoItemContainer>
+        <CheckBoxContainer>
+          {!todo.complete ? (
+            <CheckCircleOutlineRoundedIcon
+              style={{
+                color:
+                  todo.priority === "priority4"
+                    ? "black"
+                    : todo.priority === "priority3"
+                    ? "red"
+                    : todo.priority === "priority2"
+                    ? "orange"
+                    : todo.priority === "priority1"
+                    ? "green"
+                    : undefined,
+              }}
+              onClick={() => handleCompleteTodo(todo)}
+            />
+          ) : (
+            <CheckCircleRoundedIcon onClick={() => handleCompleteTodo(todo)} />
+          )}
+        </CheckBoxContainer>
+        <TodoTitleContainer>
+          {!toggleTodo ? (
+            <Container
               style={{
                 textDecoration: todo.complete && "3px line-through",
               }}
-            />
-          </Container>
-        )}
-      </TodoItemTitleContainer>
-      <TodoItemButtonsContainer>
-        {toggleTodo ? (
-          <CheckCircleRoundedIcon
-            style={{ color: "green" }}
-            onClick={() => handleEditTodo(todo)}
-          />
-        ) : (
-          <EditIcon color="primary" onClick={handleToggleTodo} />
-        )}
-        {toggleTodo ? (
-          <CancelRoundedIcon color="secondary" onClick={handleToggleTodo} />
-        ) : (
-          <DeleteOutlineIcon
-            color="secondary"
-            onClick={() => removeTodo(todo.id)}
-          />
-        )}
-      </TodoItemButtonsContainer>
-    </Cell>
+            >
+              {todo.title}
+            </Container>
+          ) : (
+            <Container
+              style={{
+                textDecoration: todo.complete && "3px line-through",
+              }}
+            >
+              <EditInput
+                type="text"
+                value={editTitle}
+                onChange={handleChangeEditTitle}
+                style={{
+                  textDecoration: todo.complete && "3px line-through",
+                }}
+              />
+            </Container>
+          )}
+        </TodoTitleContainer>
+        <TodoButtonsContainer>
+          <TodoToggleButtonContainer>
+            {!toggleTodo ? (
+              <EditIcon color="primary" onClick={handleToggleTodo} />
+            ) : (
+              <CheckCircleRoundedIcon
+                style={{ color: "green" }}
+                onClick={() => handleEditTodo(todo)}
+              />
+            )}
+          </TodoToggleButtonContainer>
+          <TodoToggleButtonContainer>
+            {!toggleTodo ? (
+              <DeleteOutlineIcon
+                color="secondary"
+                onClick={() => removeTodo(todo.id)}
+              />
+            ) : (
+              <CancelRoundedIcon color="secondary" onClick={handleToggleTodo} />
+            )}
+          </TodoToggleButtonContainer>
+        </TodoButtonsContainer>
+      </TodoItemContainer>
+    </Container>
   );
 };
 
