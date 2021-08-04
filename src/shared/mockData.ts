@@ -35,49 +35,55 @@ export const priorities = ["priority1", "priority2", "priority3", "priority4"];
 
 export const themes: any = {
   blueTheme: {
+    header: "#2979ff", //A400
+    footer: "#2979ff", //A400
     title: "blue",
-    buttonTheme: "#1976d2", //700
-    boxTheme: "#64b5f6", //300
-    appTheme: "#bbdefb", //200
-    itemTheme: "#bbdefb", //100
+    buttonTheme: "#2962ff", //A700
+    appTheme: "#bbdefb", //100
+    itemTheme: "#bbdefb", //200
   },
 
   redTheme: {
+    header: "#ff1744", //A400
+    footer: "#ff1744", //A400
     title: "red",
-    buttonTheme: "#d32f2f", //900
-    boxTheme: "#e57373", //300
+    buttonTheme: "#d50000", //A700
     itemTheme: "#ffcdd2", //100
     appTheme: "#ffcdd2", //200
   },
 
   orangeTheme: {
+    header: "#ff9100", //A400
+    footer: "#ff9100", //A400
     title: "orange",
-    buttonTheme: "#e65100", //700
-    boxTheme: "#ff9800", //500
+    buttonTheme: "#ff6d00", //A700
     appTheme: "#ffcc80", //200
     itemTheme: "#ffcc80", //200
   },
 
   yellowTheme: {
+    header: "#fbc02d", //700
+    footer: "#fbc02d", //700
     title: "yellow",
-    buttonTheme: "#f57f17", //700
-    boxTheme: "#fdd835", //500
+    buttonTheme: "#f57f17", //900
     appTheme: "#fff176", //300
     itemTheme: "#fff176", //300
   },
 
   purpleTheme: {
+    header: "#d500f9", //A400
+    footer: "#d500f9", //A400
     title: "purple",
-    buttonTheme: "#4a148c", //700
-    boxTheme: "#ba68c8", //300
+    buttonTheme: "#aa00ff", //A700
     appTheme: "#ce93d8", //200
     itemTheme: "#ede7f6", //100
   },
 
   greenTheme: {
+    header: "#00e676", //A400
+    footer: "#00e676", //A400
     title: "green",
-    buttonTheme: "#1b5e20", //700
-    boxTheme: "#81c784", //300
+    buttonTheme: "#00c853", //A700
     appTheme: "#a5d6a7", //200
     itemTheme: "#e8f5e9", //50
   },

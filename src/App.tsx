@@ -88,7 +88,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <AppContainer>
         <Header>
-          <SubmitItemForm addTodo={addTodo} />
+          <SubmitItemForm addTodo={addTodo} theme={theme} />
         </Header>
         <TodosList
           todos={todos}

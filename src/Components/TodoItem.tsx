@@ -93,6 +93,7 @@ const TodoItem: React.FC<TodoIProps> = ({
           ) : (
             <Container
               style={{
+                width: "95%",
                 textDecoration: todo.complete && "3px line-through",
               }}
             >

@@ -28,9 +28,10 @@ const customStyles = {
 
 interface IProps {
   addTodo: AddTodo;
+  theme: Theme;
 }
 
-const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
+const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [title, setTitle] = React.useState<string>("");
   const [selectedPriorityOption, setSelectedPriorityOption] =
@@ -66,6 +67,7 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
           <PriorityPicker
             selectPriorityOption={selectPriorityOption}
             selectedPriorityOption={selectedPriorityOption}
+            theme={theme}
           />
           <SubmitFormButtonsContainer>
             <AddButton onClick={handleSubmitTodo}>Add task</AddButton>

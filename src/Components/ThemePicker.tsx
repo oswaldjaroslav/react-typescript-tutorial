@@ -23,6 +23,11 @@ const ThemePicker = ({ theme, setTheme }: any) => {
     setOpen(false);
   };
 
+  const handleSetTheme = (theme: any) => {
+    handleClose();
+    setTheme(theme);
+  };
+
   React.useEffect(() => {
     const handleClickOutside = (e: any) => {
       if (ref.current && !ref.current.contains(e.target)) {
@@ -42,7 +47,7 @@ const ThemePicker = ({ theme, setTheme }: any) => {
           {Object.values(themes).map((item: any) => (
             <ThemeButton
               style={{ background: item.itemTheme }}
-              onClick={() => setTheme(item)}
+              onClick={() => handleSetTheme(item)}
             >
               <ThemeColor style={{ background: item.buttonTheme }} />
               <ThemeTitle>{item.title}</ThemeTitle>
