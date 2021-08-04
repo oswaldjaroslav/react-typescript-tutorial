@@ -24,6 +24,10 @@ const App = () => {
     All: () => true,
     Active: (todo: Todo) => !todo.complete,
     Completed: (todo: Todo) => todo.complete,
+    Priority1: (todo: Todo) => todo.priority === "priority1",
+    Priority2: (todo: Todo) => todo.priority === "priority2",
+    Priority3: (todo: Todo) => todo.priority === "priority3",
+    Priority4: (todo: Todo) => todo.priority === "priority4",
   };
 
   const FILTER_NAMES = Object.keys(FILTER_MAP);
@@ -98,6 +102,7 @@ const App = () => {
           editTodo={editTodo}
           FILTER_MAP={FILTER_MAP}
           filter={filter}
+          theme={theme}
         />
         <Footer>
           <FilterListContainer>{renderFilterList()}</FilterListContainer>

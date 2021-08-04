@@ -4,7 +4,6 @@ export const ThemePickerContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
-  margin-left: 27px;
 `;
 
 export const ThemePickerButton = styled.button`
@@ -84,12 +83,28 @@ export const CheckBoxContainer = styled.div`
   }
 `;
 
+export const TodoPriorityPickerContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 10%;
+  margin-right: 10px;
+  @media (max-width: 768px) {
+    display: flex;
+    margin-right: 25px;
+  }
+`;
+
 export const TodoTitleContainer = styled.div`
-  width: 80%;
+  width: 70%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: flex-start;
+  @media (max-width: 768px) {
+    display: flex;
+    width: 60%;
+  }
 `;
 
 export const TodoButtonsContainer = styled.div`
@@ -119,6 +134,7 @@ export const TodosListContainer = styled.div`
   flex-direction: column;
   width: 100%;
   height: 86vh;
+  margin-top: 10px;
   overflow: scroll;
   @media (max-width: 768px) {
     display: flex;
@@ -131,7 +147,6 @@ export const Input = styled.input`
   outline: none;
   border-width: 0px 0px 1px;
   font-size: 16px;
-  margin-top: 4px;
   width: 100%;
 `;
 
@@ -211,7 +226,7 @@ export const AppContainer = styled.div`
 `;
 
 export const FilterListContainer = styled.div`
-  width: 200px;
+  width: fit-content;
   display: flex;
   justify-content: space-between;
 `;
@@ -235,7 +250,6 @@ export const PriorityPickerButton = styled.div`
   height: 20px;
   padding: 10px;
   border-radius: 5px;
-  margin-top: 10px;
   cursor: pointer;
   :hover {
     background: ${(props: any) => props.theme.appTheme};
@@ -258,6 +272,10 @@ export const PriorityPickerCollapsiblePanelItem = styled.div`
   :hover {
     background: ${(props: any) => props.theme.appTheme};
   }
+`;
+
+export const PriorityPickerContainer = styled.div`
+  margin-top: 10px;
 `;
 
 export const Footer = styled.div`

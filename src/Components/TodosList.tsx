@@ -15,6 +15,7 @@ interface IProps {
   editTodo: EditTodo;
   FILTER_MAP: any;
   filter: any;
+  theme: Theme;
 }
 
 const TodosList: React.FC<IProps> = ({
@@ -24,19 +25,21 @@ const TodosList: React.FC<IProps> = ({
   editTodo,
   FILTER_MAP,
   filter,
+  theme,
 }) => {
   const renderTodosList = React.useCallback(() => {
     return (
-      <div>
+      <Container>
         {todos.filter(FILTER_MAP[filter]).map((todo: Todo) => (
           <TodoItem
             todo={todo}
             completeTodo={completeTodo}
             removeTodo={removeTodo}
             editTodo={editTodo}
+            theme={theme}
           />
         ))}
-      </div>
+      </Container>
     );
   }, [FILTER_MAP, filter, todos, completeTodo, removeTodo, editTodo]);
 

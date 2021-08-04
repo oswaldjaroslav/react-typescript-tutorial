@@ -9,7 +9,7 @@ import {
 
 interface IProps {
   selectPriorityOption: SelectPriorityOption;
-  selectedPriorityOption: string;
+  selectedPriorityOption?: string;
   theme: Theme;
 }
 
@@ -24,6 +24,10 @@ const PriorityPicker: React.FC<IProps> = ({
   const handleVisible = React.useCallback(() => {
     setVisible((current: boolean) => !current);
   }, []);
+
+  const handleVisibleFalse = () => {
+    setVisible(false);
+  };
 
   const handleSelectPriority = React.useCallback(
     (priority: string) => {
@@ -53,14 +57,14 @@ const PriorityPicker: React.FC<IProps> = ({
   React.useEffect(() => {
     const handleClickOutside = (e: any) => {
       if (ref.current && !ref.current.contains(e.target)) {
-        handleVisible();
+        handleVisibleFalse();
       }
     };
     document.addEventListener("mousedown", handleClickOutside);
     return function cleanup() {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [ref, handleVisible]);
+  }, [ref, handleVisibleFalse]);
 
   return (
     <Container ref={ref}>

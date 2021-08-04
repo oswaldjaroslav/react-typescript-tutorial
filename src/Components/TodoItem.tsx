@@ -9,16 +9,19 @@ import {
   Container,
   TodoButtonsContainer,
   TodoItemContainer,
+  TodoPriorityPickerContainer,
   TodoTitleContainer,
   TodoToggleButtonContainer,
 } from "../styled-components";
 import EditInput from "./EditInput";
+import PriorityPicker from "./PriorityPicker";
 
 interface TodoIProps {
   todo: Todo;
   completeTodo: CompleteTodo;
   removeTodo: RemoveTodo;
   editTodo: EditTodo;
+  theme: Theme;
 }
 
 const TodoItem: React.FC<TodoIProps> = ({
@@ -26,10 +29,18 @@ const TodoItem: React.FC<TodoIProps> = ({
   completeTodo,
   removeTodo,
   editTodo,
+  theme,
 }) => {
   const [toggleCheckBox, setToggleCheckBox] = React.useState<boolean>(false);
   const [toggleTodo, setToggleTodo] = React.useState<boolean>(false);
   const [editTitle, setEditTitle] = React.useState<string>(todo.title);
+  const [selectedPriorityOption, setSelectedPriorityOption] = React.useState(
+    todo.priority
+  );
+
+  const selectPriorityOption = (priority: string) => {
+    setSelectedPriorityOption(priority);
+  };
 
   const handleToggleCheckBox = () => {
     setToggleCheckBox((current: boolean) => !current);
@@ -53,6 +64,7 @@ const TodoItem: React.FC<TodoIProps> = ({
       ...todo,
       title: editTitle,
       complete: todo.complete,
+      priority: selectedPriorityOption,
     });
     handleToggleTodo();
   };
@@ -93,7 +105,8 @@ const TodoItem: React.FC<TodoIProps> = ({
           ) : (
             <Container
               style={{
-                width: "95%",
+                width: "90%",
+                display: "flex",
                 textDecoration: todo.complete && "3px line-through",
               }}
             >
@@ -108,6 +121,15 @@ const TodoItem: React.FC<TodoIProps> = ({
             </Container>
           )}
         </TodoTitleContainer>
+        <TodoPriorityPickerContainer>
+          {toggleTodo ? (
+            <PriorityPicker
+              theme={theme}
+              selectPriorityOption={selectPriorityOption}
+              selectedPriorityOption={selectedPriorityOption}
+            />
+          ) : null}
+        </TodoPriorityPickerContainer>
         <TodoButtonsContainer>
           <TodoToggleButtonContainer>
             {!toggleTodo ? (

@@ -6,6 +6,7 @@ import {
   AddButton,
   CancelButton,
   Container,
+  PriorityPickerContainer,
   SubmitForm,
   SubmitFormButtonsContainer,
   SubmitItemButton,
@@ -64,11 +65,13 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
         <SubmitForm>
           <EditInput value={title} onChange={handleChange} />
-          <PriorityPicker
-            selectPriorityOption={selectPriorityOption}
-            selectedPriorityOption={selectedPriorityOption}
-            theme={theme}
-          />
+          <PriorityPickerContainer>
+            <PriorityPicker
+              selectPriorityOption={selectPriorityOption}
+              selectedPriorityOption={selectedPriorityOption}
+              theme={theme}
+            />
+          </PriorityPickerContainer>
           <SubmitFormButtonsContainer>
             <AddButton onClick={handleSubmitTodo}>Add task</AddButton>
             <CancelButton onClick={handleOpenClose}>Cancel</CancelButton>
