@@ -73,7 +73,17 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
             />
           </PriorityPickerContainer>
           <SubmitFormButtonsContainer>
-            <AddButton onClick={handleSubmitTodo}>Add task</AddButton>
+            {title ? (
+              <AddButton onClick={handleSubmitTodo}>Add task</AddButton>
+            ) : (
+              <AddButton
+                onClick={handleSubmitTodo}
+                disabled
+                style={{ opacity: 0.3 }}
+              >
+                Add task
+              </AddButton>
+            )}
             <CancelButton onClick={handleOpenClose}>Cancel</CancelButton>
           </SubmitFormButtonsContainer>
         </SubmitForm>
