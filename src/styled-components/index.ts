@@ -264,6 +264,7 @@ export const PriorityPickerCollapsiblePanel = styled.div`
   background: white;
   cursor: pointer;
   width: fit - content;
+  z-index: 1;
 `;
 
 export const PriorityPickerCollapsiblePanelItem = styled.div`

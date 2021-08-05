@@ -64,7 +64,11 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
       <SubmitItemButton onClick={handleOpenClose}>+</SubmitItemButton>
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
         <SubmitForm>
-          <EditInput value={title} onChange={handleChange} />
+          <EditInput
+            value={title}
+            onChange={handleChange}
+            placeholder="Add task"
+          />
           <PriorityPickerContainer>
             <PriorityPicker
               selectPriorityOption={selectPriorityOption}
