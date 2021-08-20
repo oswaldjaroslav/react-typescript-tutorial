@@ -1,2 +1,0 @@
-# typescript-sample
-# typescript-tutorial
