@@ -1,5 +1,6 @@
 {
   "name": "typescript-tutorial",
+  "homepage": "https://romanca.github.io/react-typescript-tutorial/",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
