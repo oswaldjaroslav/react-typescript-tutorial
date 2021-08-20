@@ -2,9 +2,9 @@ import React from "react";
 import { FiltersButton } from "../styled-components";
 
 interface IProps {
-  item: string;
+  item: TFilterKey;
   isPressed?: boolean;
-  setFilter: (item: string) => void;
+  setFilter: (item: TFilterKey) => void;
 }
 
 const FilterButton: React.FC<IProps> = ({ item, isPressed, setFilter }) => {

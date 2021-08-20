@@ -7,13 +7,13 @@ import CancelRoundedIcon from "@material-ui/icons/CancelRounded";
 import {
   CheckBoxContainer,
   Container,
+  Input,
   TodoButtonsContainer,
   TodoItemContainer,
   TodoPriorityPickerContainer,
   TodoTitleContainer,
   TodoToggleButtonContainer,
 } from "../styled-components";
-import EditInput from "./EditInput";
 import PriorityPicker from "./PriorityPicker";
 
 interface TodoIProps {
@@ -21,7 +21,6 @@ interface TodoIProps {
   completeTodo: CompleteTodo;
   removeTodo: RemoveTodo;
   editTodo: EditTodo;
-  theme: Theme;
 }
 
 const TodoItem: React.FC<TodoIProps> = ({
@@ -29,7 +28,6 @@ const TodoItem: React.FC<TodoIProps> = ({
   completeTodo,
   removeTodo,
   editTodo,
-  theme,
 }) => {
   const [toggleCheckBox, setToggleCheckBox] = React.useState<boolean>(false);
   const [toggleTodo, setToggleTodo] = React.useState<boolean>(false);
@@ -50,7 +48,7 @@ const TodoItem: React.FC<TodoIProps> = ({
     setToggleTodo((current: boolean) => !current);
   };
 
-  const handleChangeEditTitle = (e: any) => {
+  const handleChangeEditTitle = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEditTitle(e.target.value);
   };
 
@@ -110,7 +108,7 @@ const TodoItem: React.FC<TodoIProps> = ({
                 textDecoration: todo.complete && "3px line-through",
               }}
             >
-              <EditInput
+              <Input
                 type="text"
                 value={editTitle}
                 onChange={handleChangeEditTitle}
@@ -124,9 +122,8 @@ const TodoItem: React.FC<TodoIProps> = ({
         <TodoPriorityPickerContainer>
           {toggleTodo ? (
             <PriorityPicker
-              theme={theme}
-              selectPriorityOption={selectPriorityOption}
-              selectedPriorityOption={selectedPriorityOption}
+              onChange={selectPriorityOption}
+              value={selectedPriorityOption}
             />
           ) : null}
         </TodoPriorityPickerContainer>

@@ -1,5 +1,6 @@
 import React from "react";
 import "../App.css";
+import { FILTER_MAP } from "../shared/mockData";
 import {
   Container,
   MessageTitle,
@@ -10,12 +11,10 @@ import TodoItem from "./TodoItem";
 interface IProps {
   todos: Todo[];
   completeTodo: CompleteTodo;
-  addTodo: AddTodo;
-  removeTodo: RemoveTodo;
+  addTodo: (title: string, priority: string) => void;
+  removeTodo: (id: number) => void;
   editTodo: EditTodo;
-  FILTER_MAP: any;
-  filter: any;
-  theme: Theme;
+  filter: TFilterKey;
 }
 
 const TodosList: React.FC<IProps> = ({
@@ -23,9 +22,7 @@ const TodosList: React.FC<IProps> = ({
   completeTodo,
   removeTodo,
   editTodo,
-  FILTER_MAP,
   filter,
-  theme,
 }) => {
   const renderTodosList = React.useCallback(() => {
     return (
@@ -36,12 +33,11 @@ const TodosList: React.FC<IProps> = ({
             completeTodo={completeTodo}
             removeTodo={removeTodo}
             editTodo={editTodo}
-            theme={theme}
           />
         ))}
       </Container>
     );
-  }, [FILTER_MAP, filter, todos, completeTodo, removeTodo, editTodo]);
+  }, [filter, todos, completeTodo, removeTodo, editTodo]);
 
   React.useEffect(() => {
     renderTodosList();

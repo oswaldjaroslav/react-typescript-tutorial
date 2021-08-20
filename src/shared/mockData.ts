@@ -1,4 +1,4 @@
-export const todos = [
+export const todos: Todo[] = [
   {
     title: "todo 1",
     id: 1,
@@ -31,9 +31,14 @@ export const todos = [
   },
 ];
 
-export const priorities = ["priority1", "priority2", "priority3", "priority4"];
+export const priorities: TPriorities[] = [
+  "priority1",
+  "priority2",
+  "priority3",
+  "priority4",
+];
 
-export const themes: any = {
+export const themes: Record<TThemeKey, Theme> = {
   blueTheme: {
     header: "#2979ff", //A400
     footer: "#2979ff", //A400
@@ -88,3 +93,15 @@ export const themes: any = {
     itemTheme: "#e8f5e9", //50
   },
 };
+
+export const FILTER_MAP: Record<TFilterKey, TFilterMethod> = {
+  All: () => true,
+  Active: (todo: Todo) => !todo.complete,
+  Completed: (todo: Todo) => todo.complete,
+  Priority1: (todo: Todo) => todo.priority === "priority1",
+  Priority2: (todo: Todo) => todo.priority === "priority2",
+  Priority3: (todo: Todo) => todo.priority === "priority3",
+  Priority4: (todo: Todo) => todo.priority === "priority4",
+};
+
+export const FILTER_NAMES = Object.keys(FILTER_MAP) as TFilterKey[];

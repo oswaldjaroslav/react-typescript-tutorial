@@ -1,6 +1,6 @@
 import React from "react";
 import TodosList from "./Components/TodosList";
-import { themes, todos } from "./shared/mockData";
+import { FILTER_NAMES, themes, todos } from "./shared/mockData";
 import usePersistedState from "./use-persisted.state";
 import FilterButton from "./Components/FilterButton";
 import {
@@ -17,23 +17,11 @@ const initialTodos: Todo[] = todos;
 
 const App = () => {
   const [todos, setTodos] = usePersistedState("todos", initialTodos);
-  const [filter, setFilter] = React.useState<string>("Active");
+  const [filter, setFilter] = React.useState<TFilterKey>("Active");
   const [theme, setTheme] = usePersistedState("themes", themes["blueTheme"]);
 
-  const FILTER_MAP = {
-    All: () => true,
-    Active: (todo: Todo) => !todo.complete,
-    Completed: (todo: Todo) => todo.complete,
-    Priority1: (todo: Todo) => todo.priority === "priority1",
-    Priority2: (todo: Todo) => todo.priority === "priority2",
-    Priority3: (todo: Todo) => todo.priority === "priority3",
-    Priority4: (todo: Todo) => todo.priority === "priority4",
-  };
-
-  const FILTER_NAMES = Object.keys(FILTER_MAP);
-
   const renderFilterList = React.useCallback(() => {
-    return FILTER_NAMES.map((item: string) => {
+    return FILTER_NAMES.map((item) => {
       return (
         <FilterButton
           key={item}
@@ -43,23 +31,20 @@ const App = () => {
         />
       );
     });
-  }, [FILTER_NAMES, filter]);
-
-  React.useEffect(() => {
-    renderFilterList();
-  }, [renderFilterList]);
+  }, [filter]);
 
   const completeTodo = (selectedTodo: Todo) => {
-    const newTodos = todos.map((todo: Todo) => {
-      if (todo === selectedTodo) {
-        return {
-          ...todo,
-          complete: !todo.complete,
-        };
-      }
-      return todo;
-    });
-    setTodos(newTodos);
+    setTodos((current) =>
+      current.map((todo: Todo) => {
+        if (todo === selectedTodo) {
+          return {
+            ...todo,
+            complete: !todo.complete,
+          };
+        }
+        return todo;
+      })
+    );
   };
 
   const addTodo = (title: string, priority: string) => {
@@ -69,16 +54,15 @@ const App = () => {
       complete: false,
       priority,
     };
-    setTodos([...todos, newTodo]);
+    setTodos((current) => [...current, newTodo]);
   };
 
   const removeTodo = (id: number) => {
-    const remove = todos.filter((todo: Todo) => todo.id !== id);
-    setTodos(remove);
+    setTodos((current) => current.filter((todo: Todo) => todo.id !== id));
   };
 
   const editTodo = (todo: Todo) => {
-    setTodos((current: any) =>
+    setTodos((current) =>
       current.map((item: Todo) => {
         if (item.id === todo.id) {
           return todo;
@@ -92,7 +76,7 @@ const App = () => {
     <ThemeProvider theme={theme}>
       <AppContainer>
         <Header>
-          <SubmitItemForm addTodo={addTodo} theme={theme} />
+          <SubmitItemForm addTodo={addTodo} />
         </Header>
         <TodosList
           todos={todos}
@@ -100,9 +84,7 @@ const App = () => {
           addTodo={addTodo}
           removeTodo={removeTodo}
           editTodo={editTodo}
-          FILTER_MAP={FILTER_MAP}
           filter={filter}
-          theme={theme}
         />
         <Footer>
           <FilterListContainer>{renderFilterList()}</FilterListContainer>

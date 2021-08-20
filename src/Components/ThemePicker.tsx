@@ -11,9 +11,14 @@ import {
   ThemeTitle,
 } from "../styled-components";
 
-const ThemePicker = ({ theme, setTheme }: any) => {
+interface IProps {
+  theme: Theme;
+  setTheme: (theme: Theme) => void;
+}
+
+const ThemePicker: React.FC<IProps> = ({ theme, setTheme }) => {
   const [open, setOpen] = React.useState<boolean>(false);
-  const ref = React.useRef<any>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleOpenCLose = () => {
     setOpen((current: boolean) => !current);
@@ -23,7 +28,7 @@ const ThemePicker = ({ theme, setTheme }: any) => {
     setOpen(false);
   };
 
-  const handleSetTheme = (theme: any) => {
+  const handleSetTheme = (theme: Theme) => {
     handleClose();
     setTheme(theme);
   };
@@ -43,7 +48,7 @@ const ThemePicker = ({ theme, setTheme }: any) => {
   return (
     <ThemePickerContainer ref={ref}>
       {open ? (
-        <ThemePickerPanel style={{ background: theme.itemTheme }}>
+        <ThemePickerPanel>
           {Object.values(themes).map((item: any) => (
             <ThemeButton
               style={{ background: item.itemTheme }}
@@ -55,7 +60,10 @@ const ThemePicker = ({ theme, setTheme }: any) => {
           ))}
         </ThemePickerPanel>
       ) : null}
-      <ThemePickerButton onClick={handleOpenCLose}>
+      <ThemePickerButton
+        onClick={handleOpenCLose}
+        style={{ background: open ? theme.itemTheme : null }}
+      >
         <PaletteOutlinedIcon />
         <ButtonTitle>Themes</ButtonTitle>
       </ThemePickerButton>

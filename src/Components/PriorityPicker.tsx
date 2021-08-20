@@ -8,18 +8,13 @@ import {
 } from "../styled-components";
 
 interface IProps {
-  selectPriorityOption: SelectPriorityOption;
-  selectedPriorityOption?: string;
-  theme: Theme;
+  onChange: (priority: string) => void;
+  value?: string;
 }
 
-const PriorityPicker: React.FC<IProps> = ({
-  selectPriorityOption,
-  selectedPriorityOption,
-  theme,
-}) => {
+const PriorityPicker: React.FC<IProps> = ({ onChange, value }) => {
   const [visible, setVisible] = React.useState<boolean>(false);
-  const ref = React.useRef<any>(null);
+  const ref = React.useRef<HTMLDivElement>(null);
 
   const handleVisible = React.useCallback(() => {
     setVisible((current: boolean) => !current);
@@ -31,28 +26,22 @@ const PriorityPicker: React.FC<IProps> = ({
 
   const handleSelectPriority = React.useCallback(
     (priority: string) => {
-      selectPriorityOption(priority);
+      onChange(priority);
       handleVisible();
     },
-    [selectPriorityOption, handleVisible]
+    [onChange, handleVisible]
   );
 
   const renderPriorities = React.useCallback(() => {
     return priorities.map((priority: string) => (
       <PriorityPickerCollapsiblePanelItem
         onClick={() => handleSelectPriority(priority)}
-        style={{
-          background: priority === selectedPriorityOption && theme.appTheme,
-        }}
+        isSelected={priority === value}
       >
         {priority}
       </PriorityPickerCollapsiblePanelItem>
     ));
-  }, [selectedPriorityOption, handleSelectPriority]);
-
-  React.useEffect(() => {
-    renderPriorities();
-  }, [renderPriorities]);
+  }, [value, handleSelectPriority]);
 
   React.useEffect(() => {
     const handleClickOutside = (e: any) => {
@@ -69,7 +58,7 @@ const PriorityPicker: React.FC<IProps> = ({
   return (
     <Container ref={ref}>
       <PriorityPickerButton onClick={handleVisible}>
-        {selectedPriorityOption || priorities[3]}
+        {value || priorities[3]}
       </PriorityPickerButton>
       {visible && (
         <PriorityPickerCollapsiblePanel>

@@ -14,6 +14,12 @@ export const ThemePickerButton = styled.button`
   border: none;
   background-color: transparent;
   cursor: pointer;
+  padding: 6px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 700;
+  margin-left: 3px;
 `;
 
 export const ButtonTitle = styled.div`
@@ -24,13 +30,13 @@ export const ButtonTitle = styled.div`
 export const ThemePickerPanel = styled.div`
   border: 1px solid grey;
   border-radius: 5px;
-  background-color: whitesmoke;
   width: 250px;
   height: 150px;
   position: absolute;
-  margin-top: -185px;
+  margin-top: -200px;
   display: flex;
   flex-wrap: wrap;
+  background: white;
 `;
 
 export const ThemeTitle = styled.span`
@@ -270,6 +276,7 @@ export const PriorityPickerCollapsiblePanel = styled.div`
 export const PriorityPickerCollapsiblePanelItem = styled.div`
   padding: 10px;
   border-radius: 3px;
+  background: ${(props: any) => props.isSelected && props.theme.appTheme};
   :hover {
     background: ${(props: any) => props.theme.appTheme};
   }

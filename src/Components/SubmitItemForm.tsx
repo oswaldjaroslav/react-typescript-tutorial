@@ -6,12 +6,12 @@ import {
   AddButton,
   CancelButton,
   Container,
+  Input,
   PriorityPickerContainer,
   SubmitForm,
   SubmitFormButtonsContainer,
   SubmitItemButton,
 } from "../styled-components";
-import EditInput from "./EditInput";
 import PriorityPicker from "./PriorityPicker";
 
 const customStyles = {
@@ -29,10 +29,9 @@ const customStyles = {
 
 interface IProps {
   addTodo: AddTodo;
-  theme: Theme;
 }
 
-const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
+const SubmitItemForm: React.FC<IProps> = ({ addTodo }) => {
   const [open, setOpen] = React.useState<boolean>(false);
   const [title, setTitle] = React.useState<string>("");
   const [selectedPriorityOption, setSelectedPriorityOption] =
@@ -46,7 +45,7 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
     setOpen((current: boolean) => !current);
   };
 
-  const handleSubmitTodo = (e: any) => {
+  const handleSubmitTodo = (e: React.ChangeEvent<HTMLInputElement>) => {
     const priority = selectedPriorityOption;
     e.preventDefault();
     addTodo(title, priority);
@@ -55,7 +54,7 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
     setSelectedPriorityOption(priorities[3]);
   };
 
-  const handleChange = (e: any) => {
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setTitle(e.target.value);
   };
 
@@ -64,16 +63,11 @@ const SubmitItemForm: React.FC<IProps> = ({ addTodo, theme }) => {
       <SubmitItemButton onClick={handleOpenClose}>+</SubmitItemButton>
       <Modal isOpen={open} style={customStyles} overlayClassName="overlay">
         <SubmitForm>
-          <EditInput
-            value={title}
-            onChange={handleChange}
-            placeholder="Add task"
-          />
+          <Input value={title} onChange={handleChange} placeholder="Add task" />
           <PriorityPickerContainer>
             <PriorityPicker
-              selectPriorityOption={selectPriorityOption}
-              selectedPriorityOption={selectedPriorityOption}
-              theme={theme}
+              onChange={selectPriorityOption}
+              value={selectedPriorityOption}
             />
           </PriorityPickerContainer>
           <SubmitFormButtonsContainer>
