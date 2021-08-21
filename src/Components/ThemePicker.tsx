@@ -29,7 +29,9 @@ const ThemePicker: React.FC<IProps> = ({ theme, setTheme }) => {
   };
 
   const handleSetTheme = (theme: Theme) => {
-    handleClose();
+    setTimeout(() => {
+      handleClose();
+    }, 200);
     setTheme(theme);
   };
 
