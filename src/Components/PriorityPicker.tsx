@@ -20,9 +20,9 @@ const PriorityPicker: React.FC<IProps> = ({ onChange, value }) => {
     setVisible((current: boolean) => !current);
   }, [setVisible]);
 
-  const handleVisibleFalse = () => {
+  const handleVisibleFalse = React.useCallback(() => {
     setVisible(false);
-  };
+  }, [setVisible]);
 
   const handleSelectPriority = React.useCallback(
     (priority: string) => {
