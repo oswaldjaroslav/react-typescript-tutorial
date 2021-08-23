@@ -51,7 +51,7 @@ const ThemePicker: React.FC<IProps> = ({ theme, setTheme }) => {
     <ThemePickerContainer ref={ref}>
       {open ? (
         <ThemePickerPanel>
-          {Object.values(themes).map((item: any) => (
+          {Object.values(themes).map((item: Theme) => (
             <ThemeButton
               style={{ background: item.itemTheme }}
               onClick={() => handleSetTheme(item)}

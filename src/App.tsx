@@ -12,6 +12,7 @@ import {
 import { ThemeProvider } from "styled-components";
 import ThemePicker from "./Components/ThemePicker";
 import SubmitItemForm from "./Components/SubmitItemForm";
+import Theme from "./Providers/Theme";
 
 const initialTodos: Todo[] = todos;
 
@@ -73,7 +74,7 @@ const App = () => {
   };
 
   return (
-    <ThemeProvider theme={theme}>
+    <Theme theme={theme}>
       <AppContainer>
         <Header>
           <SubmitItemForm addTodo={addTodo} />
@@ -91,7 +92,7 @@ const App = () => {
           <ThemePicker theme={theme} setTheme={setTheme} />
         </Footer>
       </AppContainer>
-    </ThemeProvider>
+    </Theme>
   );
 };
 
